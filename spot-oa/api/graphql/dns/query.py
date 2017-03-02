@@ -178,7 +178,7 @@ EdgeDetailsType = GraphQLObjectType(
 )
 
 ThreatDetailsType = GraphQLObjectType(
-    name='NetflowThreatDetailsType',
+    name='DnsThreatDetailsType',
     fields={
         'frameTime': GraphQLField(
             type=SpotDatetimeType,
@@ -406,7 +406,7 @@ ThreatInformationType = GraphQLObjectType(
             args={
                 'date': GraphQLArgument(
                     type=SpotDateType,
-                    description='A date to use as a reference for suspicous connections. Defaults to today'
+                    description='A date to use as a reference for suspicous queries. Defaults to today'
                 ),
                 'clientIp': GraphQLArgument(
                     type=SpotIpType,
