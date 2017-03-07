@@ -27,7 +27,7 @@ const DetailsDendrogramPanel = React.createClass({
 
             state.data = {
                 id: 'root',
-                name: DendrogramStore.getSrcIp(),
+                name: DendrogramStore.getClientIp(),
                 children: []
             };
 
@@ -43,7 +43,7 @@ const DetailsDendrogramPanel = React.createClass({
                 };
                 state.data.children.push(childNode);
 
-                answers = item.dns_a.split('|');
+                answers = item.dns_a;
 
                 if (answers.length) {
                     let childId = 0;

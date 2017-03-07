@@ -28,7 +28,6 @@ var DetailsTablePanel = React.createClass({
   },
   _render_dns_a_cell: function (answers)
   {
-    answers = (answers || "").split('|');
     answers = answers.map(function (answer, idx)
     {
         return (
@@ -40,9 +39,6 @@ var DetailsTablePanel = React.createClass({
 
     return answers;
   },
-  _render_dns_qry_class_cell: false,
-  _render_dns_qry_rcode_cell: false,
-  _render_dns_qry_type_cell: false,
   _onChange: function ()
   {
     this.replaceState(DetailsStore.getData());
