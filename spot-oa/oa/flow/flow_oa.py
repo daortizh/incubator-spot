@@ -91,7 +91,6 @@ class OA(object):
 
         for path in table_schema:
             HDFSClient.delete_folder("{0}/{1}/hive/oa/{2}/y={3}/m={4}/d={5}".format(HUSER,self._table_name,path,yr,int(mn),int(dy)),user="impala")        
-        HDFSClient.delete_folder("{0}/{1}/hive/oa/{2}/y={3}/m={4}".format(HUSER,self._table_name,"summary",yr,int(mn)),user="impala")        
         impala.execute_query("invalidate metadata")
         #removes Feedback file
         HDFSClient.delete_folder("{0}/{1}/scored_results/{2}{3}{4}/feedback/ml_feedback.csv".format(HUSER,self._table_name,yr,mn,dy))
@@ -438,8 +437,8 @@ class OA(object):
             df_final = df_filtered.append(df_per_min, ignore_index=True).to_records(False,False) 
             if len(df_final) > 0:
                 query_to_insert=("""
-                    INSERT INTO {0}.flow_ingest_summary PARTITION (y={1}, m={2}) VALUES {3};
-                """).format(self._db, yr, mn, tuple(df_final))
+                    INSERT INTO {0}.flow_ingest_summary PARTITION (y={1}, m={2}, d={3}) VALUES {4};
+                """).format(self._db, yr, mn, dy, tuple(df_final))
 
                 impala.execute_query(query_to_insert)
                 
