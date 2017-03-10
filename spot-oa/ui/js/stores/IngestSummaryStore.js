@@ -90,6 +90,9 @@ SpotDispatcher.register(function (action) {
         case SpotConstants.RELOAD_INGEST_SUMMARY:
             iss.sendQuery();
             break;
+        case SpotConstants.UPDATE_PIPELINE:
+            iss.setPipeline(action.pipeline)
+        break;
     }
 });
 
